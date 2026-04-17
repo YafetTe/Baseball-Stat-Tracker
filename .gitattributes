@@ -2,4 +2,6 @@
 * text=auto
 import sys 
 
+""This class is used to determine a single-player's statistics.""
 class BaseballPlayer:
+def__init__(self, name, at_bats, hits, home_runs):
