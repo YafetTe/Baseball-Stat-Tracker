@@ -19,3 +19,11 @@ class BaseballPlayer:
       return == 0.0
 
     return round(self.hits / self.at_bats, 3)
+
+  def calculate_slugging(self):
+    if self.at_bats <= 0:
+      return 0.0
+
+  total_bases = (self.hits - self.home_runs) + (self.home_runs * 4)
+  return round(total_bases / self.at_bats, 3)
+
