@@ -3,5 +3,19 @@
 import sys 
 
 ""This class is used to determine a single-player's statistics.""
+
 class BaseballPlayer:
-def__init__(self, name, at_bats, hits, home_runs):
+  
+  def__init__(self, name, at_bats, hits, home_runs):
+self.name = name
+self.at_bats = int(at_bats)
+self.hits = int(hits)
+self.home_runs = int(home_runs)
+
+""Calculates batting average""
+def calculate_batting_avg(self):
+
+if self.at_bats == 0:
+return == 0.0
+
+return round(self.hits / self.at_bats, 3)
