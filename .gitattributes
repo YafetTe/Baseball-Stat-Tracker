@@ -6,13 +6,15 @@ import sys
 
 class BaseballPlayer:
   
-  def__init__(self, name, at_bats, hits, home_runs):
+  def__init__(self, name, at_bats, hits, home_runs, doubles, triples):
     self.name = name
     self.at_bats = int(at_bats)
     self.hits = int(hits)
     self.home_runs = int(home_runs)
+    self.doubles = int(doubles)
+    self.triples = int(triples)
 
-""Calculates batting average""
+"""Calculates batting average"""
   def calculate_batting_avg(self):
 
     if self.at_bats == 0:
@@ -23,7 +25,7 @@ class BaseballPlayer:
   def calculate_slugging(self):
     if self.at_bats <= 0:
       return 0.0
-
-  total_bases = (self.hits - self.home_runs) + (self.home_runs * 4)
-  return round(total_bases / self.at_bats, 3)
+    singles = self.hits - self.doubles - self.triples - self.home_runs
+    total_bases = (singles) + (self.doubles * 2) + (self.triples * 3) + (self.home_runs * 4)
+    return round(total_bases / self.at_bats, 3)
 
