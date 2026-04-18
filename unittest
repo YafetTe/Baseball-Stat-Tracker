@@ -17,3 +17,11 @@ self.assertEqual(player.home_runs, 10)
 def test_batting_average_zero_at_bats(self):
         player = BaseballPlayer("Player C", 0, 0, 0)
         self.assertEqual(player.calculate_batting_avg(), 0.0)
+
+def test_batting_average_rounding(self):
+       player = BaseballPlayer("Player D", 3, 1, 0, 0, 0)
+       self.assertEqual(player.calculate_batting_avg(), 0.333)
+
+   def test_slugging_normal(self):
+       player = BaseballPlayer("Player E", 100, 30, 10, 5, 2)
+       self.assertEqual(player.calculate_slugging(), 0.69)
