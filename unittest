@@ -1,0 +1,19 @@
+import unittest
+from baseball_player import BaseballPlayer 
+
+class TestBaseballPlayer(unittest.TestCase):
+
+def test_player_attributes(self):
+player = BaseballPlaye("Player A", 100, 30, 10)
+self.assertEqual(player.name "Player A")
+self.assertEqual(player.at_bats, 100)
+self.assertEqual(plyer.hits, 30)
+self.assertEqual(player.home_runs, 10)
+
+  def test_batting_average_normal(self):
+        player = BaseballPlayer("Player B", 100, 25, 5)
+        self.assertEqual(player.calculate_batting_avg(), 0.25)
+
+def test_batting_average_zero_at_bats(self):
+        player = BaseballPlayer("Player C", 0, 0, 0)
+        self.assertEqual(player.calculate_batting_avg(), 0.0)
