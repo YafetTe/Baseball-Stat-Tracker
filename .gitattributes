@@ -8,13 +8,16 @@ import sys
 
 class BaseballPlayer:
 
-    def __init__(self, name, at_bats, hits, home_runs, doubles, triples):
+    def __init__(self, name, at_bats, hits, home_runs, doubles, triples walks, hbp, sac_flys):
         self.name = name
         self.at_bats = int(at_bats)
         self.hits = int(hits)
         self.home_runs = int(home_runs)
         self.doubles = int(doubles)
         self.triples = int(triples)
+        self.walks = int(walks)
+        self.hbp = int(hbp)
+        self.sac_flys = int(sac_flys)
 
     def calculate_batting_avg(self):
         if self.at_bats == 0:
@@ -32,3 +35,8 @@ class BaseballPlayer:
             (self.home_runs * 4)
         )
         return round(total_bases / self.at_bats, 3)
+
+    #calculate woba
+    def calculate_woba(self):
+        woba = ((self.walk * 0.69) + (self.hpb * 0.69) + (self.singles * 0.89) + (self.doubles * 1.27) + (self.triples * 1.62) + (self.home_runs * 2.10))/(self.at_bats + self.walks +self.hbp)
+        return round(woba, 3)
