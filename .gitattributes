@@ -8,7 +8,7 @@ import sys
 
 class BaseballPlayer:
 
-    def __init__(self, name, at_bats, hits, home_runs, doubles, triples walks, hbp, sac_flys):
+    def __init__(self, name, at_bats, hits, home_runs, doubles, triples, walks, hbp, sac_flys):
         self.name = name
         self.at_bats = int(at_bats)
         self.hits = int(hits)
