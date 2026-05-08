@@ -50,3 +50,22 @@ class BaseballPlayer:
 def load_players(filepath):
     df = pd.read_html(filepath)[0]
     df = df.dropna(subset=["Player"])
+    players = []
+    for _, row in df.iterrows():
+        try:
+            player = BaseballPlayer(
+                name=row["Player"],
+                at_bats=row.get("AB", 0),
+                hits=row.get("H", 0),
+                home_runs=row.get("HR", 0),
+                doubles=row.get("2B", 0),
+                triples=row.get("3B", 0),
+                walks=row.get("BB", 0),
+                hbp=row.get("HBP", 0),
+                sac_flys=row.get("SF", 0),
+            )
+            players.append(player)
+        except (ValueError, TypeError):
+            continue  # skip malformed rows (e.g. totals/headers)
+    return players
+ 
