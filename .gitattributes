@@ -84,4 +84,9 @@ def display_stats(players):
             f"{p.calculate_slugging():>6.3f} "
             f"{p.calculate_woba():>6.3f}"
         )
- 
+
+# This creates the function to look up a specific player's name
+def find_player(players, name):
+    name_lower = name.lower()
+    matches = [p for p in players if name_lower in p.name.lower()]
+    return matches
