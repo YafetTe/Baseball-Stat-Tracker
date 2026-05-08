@@ -175,3 +175,24 @@ while True:
         print("3. Quit")
         choice = input("Choose an option: ").strip()
 
+ if choice == "1":
+            print()
+            display_stats(players)
+        elif choice == "2":
+            name = input("Enter player name: ").strip()
+            matches = find_player(players, name)
+            if not matches:
+                print(f"No player found matching '{name}'.")
+            else:
+                for p in matches:
+                    display_single_player(p)
+        elif choice == "3":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice, please enter 1, 2, or 3.")
+ 
+ 
+if __name__ == "__main__":
+    main()
+
