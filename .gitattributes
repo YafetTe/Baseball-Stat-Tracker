@@ -162,3 +162,8 @@ def display_single_player(player):
     print(f"  Slugging:      {player.calculate_slugging():.3f}")
     print(f"  wOBA:          {player.calculate_woba():.3f}")
  
+
+# This function creates an interactive user interface where people can decide what they want to do out of options 1,2, and 3
+def main():
+    filepath = "sportsref_download.xls"
+    players = load_players(filepath)
