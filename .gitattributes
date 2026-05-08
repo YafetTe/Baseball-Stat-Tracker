@@ -47,6 +47,7 @@ class BaseballPlayer:
         woba = ((self.walk * 0.69) + (self.hpb * 0.69) + (self.singles * 0.89) + (self.doubles * 1.27) + (self.triples * 1.62) + (self.home_runs * 2.10))/(self.at_bats + self.walks +self.hbp)
         return round(woba, 3)
 
+#This is where we create the function to load in the players from the sample data file
 def load_players(filepath):
     df = pd.read_html(filepath)[0]
     df = df.dropna(subset=["Player"])
@@ -68,4 +69,19 @@ def load_players(filepath):
         except (ValueError, TypeError):
             continue  # skip malformed rows (e.g. totals/headers)
     return players
+
+
+  # This is where we create the function to display the stats of the individual players
+def display_stats(players):
+    header = f"{'Player':<22} {'AVG':>6} {'OBP':>6} {'SLG':>6} {'wOBA':>6}"
+    print(header)
+    print("-" * len(header))
+    for p in players:
+        print(
+            f"{p.name:<22} "
+            f"{p.calculate_batting_avg():>6.3f} "
+            f"{p.calculate_obp():>6.3f} "
+            f"{p.calculate_slugging():>6.3f} "
+            f"{p.calculate_woba():>6.3f}"
+        )
  
