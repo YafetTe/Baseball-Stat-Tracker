@@ -163,7 +163,7 @@ def display_single_player(player):
     print(f"  wOBA:          {player.calculate_woba():.3f}")
  
 
-# This function creates an interactive user interface where people can decide what they want to do out of options 1,2, and 3
+# This function creates an option table for the user to interact with
 def main():
     filepath = "sportsref_download.xls"
     players = load_players(filepath)
