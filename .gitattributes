@@ -17,11 +17,35 @@ class BaseballPlayer:
         self.sac_flys = int(sac_flys)
 
     def calculate_batting_avg(self):
+"""
+This function calculates batting average, which is a stat that determines how many times a hitter gets a hit per at bat. This will be an important stat for
+batters near the middle of the lineup because hits are more likely to drive in runs than walks are.
+
+args:
+at bats:  an integer to represent the amount of plate apearances where the batter gets out or puts the ball in play
+hits: an integer to represent the amount of times where the ball was put in play and the batter reached base safely
+
+returns: a float between 0 and 1 inclusive that demonstrates the amount of times per at bat a batter puts the ball in play and reaches base safely.
+"""
         if self.at_bats == 0:
             return 0.0
         return round(self.hits / self.at_bats, 3)
 
     def calculate_slugging(self):
+"""
+slugging percentage is similar to batting average but it factors in whether a hit was a single, a double, a triple, or a home run. This is useful because bigger
+hits are more valuable to the team. This will be an important stat for batters near the middle of the lineup as a higher slugging percentage is better for driving
+more runners in.
+
+args:
+at bats:  an integer to represent the amount of plate apearances where the batter gets out or puts the ball in play
+hits: an integer to represent the amount of times where the ball was put in play and the batter reached base safely
+doubles: an integer to represent the amount of times where the ball was put in play and the batter reached second base safely
+triples: an integer to represent the amount of times where the ball was put in play and the batter reached third base safely
+home runs: an integer to represent the amount of times where the ball was put in play and the batter reached home plate safely
+
+returns: a float between 0 and 4 inclusive that represents how many bases a batter is able to reach per plate appearance.
+"""
         if self.at_bats <= 0:
             return 0.0
         singles = self.hits - self.doubles - self.triples - self.home_runs
@@ -35,6 +59,18 @@ class BaseballPlayer:
 
     #calculate obp  (ON BASE PERCENTAGE -  How many times a player can get on base per plate appearance)
     def calculate_obp(self):
+"""
+on base percentage shows how often a batter gets on base per plate appearance, this includes walks and hit by pitches. This will be an important stat for batters 
+at the front of the lineup because they will be able to be scored by the batters in the middle of the lineup.
+
+args:
+at bats:  an integer to represent the amount of plate apearances where the batter gets out or puts the ball in play
+hits: an integer to represent the amount of times where the ball was put in play and the batter reached base safely
+walks: an integer that represent how many times a batter was walked (intentionally and unintentionally) which results in them being awarded first base
+hbp: an integer that represents how many times a batter was hit by a pitch, which functions the same as a walk
+
+returns: a float between 0 and 1 inclusive which represents how many times a runner reaches base per at bat
+"""
         if self.at_bats <= 0:
             return 0.0
         obp = (self.hits + self.hbp + self.walks)/self.at_bats
@@ -42,8 +78,27 @@ class BaseballPlayer:
 
     #calculate woba  
     def calculate_woba(self):
+"""
+woba stands for weighted on base average and is calculated by taking every possible outcome from a plate appearance and determining how many runs are scored per
+inning that outcome occurs in. This is very useful because it factors in every outcome as well as how much value the batter achieving that outcome adds. This will
+be important for all batters throughout the lineup.
+
+args:
+at bats:  an integer to represent the amount of plate appearances where the batter gets out or puts the ball in play
+hits: an integer to represent the amount of times where the ball was put in play and the batter reached base safely
+walks: an integer that represent how many times a batter was walked (intentionally and unintentionally) which results in them being awarded first base
+hbp: an integer that represents how many times a batter was hit by a pitch, which functions the same as a walk
+doubles: an integer to represent the amount of times where the ball was put in play and the batter reached second base safely
+triples: an integer to represent the amount of times where the ball was put in play and the batter reached third base safely
+home runs: an integer to represent the amount of times where the ball was put in play and the batter reached home plate safely
+sac flys: an integer that represents the amount of times a batter hit a ball that was caught but a run was still scored during the play (in baseball if a ball
+is caught, the base runners are still allowed to advance as long as they touch the base they started at before the ball is caught
+
+returns: a float between 0 and 2.1 that represents the amount of runs scored per inning added per plate appearance
+"""
         if self.at_bats <= 0:
             return 0.0
+        self.singles = self.hits - self.doubles - self.triples - self.home_runs
         woba = ((self.walk * 0.69) + (self.hpb * 0.69) + (self.singles * 0.89) + (self.doubles * 1.27) + (self.triples * 1.62) + (self.home_runs * 2.10))/(self.at_bats + self.walks +self.hbp)
         return round(woba, 3)
 
