@@ -90,3 +90,20 @@ def find_player(players, name):
     name_lower = name.lower()
     matches = [p for p in players if name_lower in p.name.lower()]
     return matches
+
+# This creates a function to pull up an in-depth look at a specific player's stats
+def display_single_player(player):
+    print(f"\n--- {player.name} ---")
+    print(f"  At Bats:       {player.at_bats}")
+    print(f"  Hits:          {player.hits}")
+    print(f"  Home Runs:     {player.home_runs}")
+    print(f"  Doubles:       {player.doubles}")
+    print(f"  Triples:       {player.triples}")
+    print(f"  Walks:         {player.walks}")
+    print(f"  HBP:           {player.hbp}")
+    print(f"  Sac Flys:      {player.sac_flys}")
+    print(f"  Batting Avg:   {player.calculate_batting_avg():.3f}")
+    print(f"  OBP:           {player.calculate_obp():.3f}")
+    print(f"  Slugging:      {player.calculate_slugging():.3f}")
+    print(f"  wOBA:          {player.calculate_woba():.3f}")
+ 
