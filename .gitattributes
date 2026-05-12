@@ -161,7 +161,38 @@ def display_single_player(player):
     print(f"  OBP:           {player.calculate_obp():.3f}")
     print(f"  Slugging:      {player.calculate_slugging():.3f}")
     print(f"  wOBA:          {player.calculate_woba():.3f}")
- 
+
+
+ def get_avg(player):
+    return player.calculate_batting_avg()
+
+def get_obp(player):
+    return player.calculate_obp()
+
+def get_slg(player):
+    return player.calculate_slugging()
+
+def get_woba(player):
+    return player.calculate_woba()
+
+def setLineup(players):
+    lineup = []
+    remaining = players[:]
+    leadoff = max(remaining, key=get_obp)
+    lineup.append(leadoff)
+    remaining.remove(leadoff)
+    second = max(remaining, key=get_avg)
+    lineup.append(second)
+    remaining.remove(second)
+    third = max(remaining, key=get_woba)
+    lineup.append(third)
+    remaining.remove(third)
+    cleanup = max(remaining, key=get_slg)
+    lineup.append(cleanup)
+    remaining.remove(cleanup)
+    remaining_sorted = sorted(remaining, key=get_woba, reverse=True)
+    lineup.extend(remaining_sorted)
+    return lineup[:9]
 
 # This function creates an interactive user interface where people can decide what they want to do out of options 1,2, and 3
 def main():
