@@ -203,7 +203,8 @@ def main():
         print("\n=== Baseball Stat Tracker ===")
         print("1. Show all players")
         print("2. Look up a player")
-        print("3. Quit")
+        print("3. Set optimal lineup")
+        print("4. Quit")
         choice = input("Choose an option: ").strip()
  
         if choice == "1":
